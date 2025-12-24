@@ -1,4 +1,4 @@
-from floyd_warshall import floyd_warshall
+from algorithms.floyd_warshall import floyd_warshall
 from data_generator import generate_matrix
 from energy_measure import measure
 

@@ -1,5 +1,5 @@
 import csv
-from bellman_ford import bellman_ford
+from algorithms.bellman_ford import bellman_ford
 from data_generator import generate_graph
 from energy_measure import measure
 

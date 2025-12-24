@@ -1,4 +1,4 @@
-from knapsack import knapsack
+from algorithms.knapsack import knapsack
 from data_generator import generate_knapsack_data
 from energy_measure import measure
 

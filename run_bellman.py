@@ -11,18 +11,32 @@ sizes = {
 
 with open("bellman_results.csv", "w", newline="") as file:
     writer = csv.writer(file)
-    writer.writerow(["level", "vertices", "edges", "time_sec", "cpu_time"])
+    writer.writerow([
+        "level",
+        "vertices",
+        "edges",
+        "time_sec",
+        "cpu_time",
+        "energy_kwh"
+    ])
 
     for level, (v, e) in sizes.items():
         vertices, edges = generate_graph(v, e)
 
-        time_sec, cpu_time, _ = measure(
+        time_sec, cpu_time, energy_kwh, _ = measure(
             bellman_ford,
+            f"BellmanFord-{level}",
             vertices,
             edges,
             0
         )
 
-        writer.writerow([level, v, e, time_sec, cpu_time])
+        writer.writerow([level, v, e, time_sec, cpu_time, energy_kwh])
 
-        print(f"{level.upper()} saved.")
+        # ✅ TERMINAL ÇIKTISI (ARTIK DİĞERLERİYLE AYNI FORMAT)
+        print(
+            f"{level.upper()} | "
+            f"V={v} | E={e} | "
+            f"Time={time_sec:.4f}s | "
+            f"Energy={energy_kwh:.2e} kWh"
+        )

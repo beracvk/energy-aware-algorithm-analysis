@@ -11,11 +11,16 @@ sizes = {
 for level, (n, cap) in sizes.items():
     weights, values, capacity = generate_knapsack_data(n, cap)
 
-    time_sec, cpu_time, _ = measure(
+    time_sec, cpu_time, energy_kwh, _ = measure(
         knapsack,
+        f"Knapsack-{level}",
         weights,
         values,
         capacity
     )
 
-    print(f"{level.upper()} | N={n} | Time={time_sec:.4f}s | CPU={cpu_time:.4f}s")
+    print(
+        f"{level.upper()} | N={n} | "
+        f"Time={time_sec:.4f}s | "
+        f"Energy={energy_kwh:.2e} kWh"
+    )

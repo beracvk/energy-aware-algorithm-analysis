@@ -11,9 +11,14 @@ sizes = {
 for level, n in sizes.items():
     graph = generate_matrix(n)
 
-    time_sec, cpu_time, _ = measure(
+    time_sec, cpu_time, energy_kwh, _ = measure(
         floyd_warshall,
+        f"FloydWarshall-{level}",
         graph
     )
 
-    print(f"{level.upper()} | N={n} | Time={time_sec:.4f}s | CPU={cpu_time:.4f}s")
+    print(
+        f"{level.upper()} | N={n} | "
+        f"Time={time_sec:.4f}s | "
+        f"Energy={energy_kwh:.2e} kWh"
+    )

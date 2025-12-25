@@ -7,8 +7,6 @@ energy_df = df[[
     "project_name", "duration", "energy_consumed"
 ]]
 
-print(energy_df)
-
 mean_energy = (
     energy_df
     .groupby("project_name")

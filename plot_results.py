@@ -1,13 +1,10 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# 1️⃣ CSV oku
 df = pd.read_csv("emissions.csv")
 
-# 2️⃣ SADECE GEREKLİ OLANLAR
 energy_df = df[["project_name", "energy_consumed"]]
 
-# 3️⃣ ORTALAMA (MEAN)
 mean_energy = (
     energy_df
     .groupby("project_name")
@@ -15,22 +12,20 @@ mean_energy = (
     .reset_index()
 )
 
-# 4️⃣ Algorithm ve level ayır
 mean_energy[["algorithm", "level"]] = (
     mean_energy["project_name"].str.split("-", expand=True)
 )
 
-# Level sırası (grafik düzgün çıksın diye)
+
 level_order = ["low", "medium", "high"]
 
-# 5️⃣ HER ALGORİTMA İÇİN TABLO + GRAFİK
 for algo in mean_energy["algorithm"].unique():
 
     algo_data = mean_energy[
         mean_energy["algorithm"] == algo
     ][["level", "energy_consumed"]]
 
-    # Level sırasına göre sırala
+
     algo_data["level"] = pd.Categorical(
         algo_data["level"],
         categories=level_order,
@@ -55,7 +50,7 @@ for algo in mean_energy["algorithm"].unique():
     plt.ylabel("Energy Consumed (kWh)")
     plt.grid(True)
 
-    # Dosyaya kaydet
+
     filename = f"{algo.lower()}_energy.png"
     plt.savefig(filename, dpi=300)
     plt.show()

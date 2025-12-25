@@ -33,7 +33,7 @@ with open("bellman_results.csv", "w", newline="") as file:
 
         writer.writerow([level, v, e, time_sec, cpu_time, energy_kwh])
 
-        # ✅ TERMINAL ÇIKTISI (ARTIK DİĞERLERİYLE AYNI FORMAT)
+
         print(
             f"{level.upper()} | "
             f"V={v} | E={e} | "
